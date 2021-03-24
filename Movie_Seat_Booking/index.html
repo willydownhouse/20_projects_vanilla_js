@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Movie Seat Booking</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-group">
+        <h2>Pick a movie:</h2>
+        <select id="select">
+          <option value="Zorro 10">Zorro 10$</option>
+          <option value="Baywatch 12">Baywatch 12$</option>
+          <!-- <option name="dum" value="8">Dum & Dumber 8$</option> -->
+        </select>
+      </div>
+      <div class="container-group">
+        <div class="pair">
+          <div class="seat1 free-seat"></div>
+          <h3>N/A</h3>
+        </div>
+        <div class="pair">
+          <div class="seat1 selected-seat"></div>
+          <h3>Selected</h3>
+        </div>
+        <div id="oc" class="pair">
+          <div class="seat1 occupied-seat"></div>
+          <h3>Occupied</h3>
+        </div>
+      </div>
+      <div class="screen-cont container-group">
+        <div class="screen"></div>
+        <div class="seats">
+          <div class="seat-group">
+            <div id="row-1" class="seat-row">
+              <div id="seat-1" class="seat"></div>
+              <div id="seat-2" class="seat"></div>
+              <div id="seat-3" class="seat"></div>
+              <div id="seat-4" class="seat"></div>
+              <div id="seat-5" class="seat"></div>
+              <div id="seat-6" class="seat"></div>
+              <div id="seat-7" class="seat"></div>
+              <div id="seat-8" class="seat"></div>
+            </div>
+            <div id="row-2" class="seat-row">
+              <div id="seat-9" class="seat"></div>
+              <div id="seat-10" class="seat"></div>
+              <div id="seat-11" class="seat"></div>
+              <div id="seat-12" class="seat"></div>
+              <div id="seat-13" class="seat"></div>
+              <div id="seat-14" class="seat"></div>
+              <div id="seat-15" class="seat"></div>
+              <div id="seat-16" class="seat"></div>
+            </div>
+            <div id="row-3" class="seat-row">
+              <div id="seat-17" class="seat"></div>
+              <div id="seat-18" class="seat"></div>
+              <div id="seat-19" class="seat"></div>
+              <div id="seat-20" class="seat"></div>
+              <div id="seat-21" class="seat"></div>
+              <div id="seat-22" class="seat"></div>
+              <div id="seat-23" class="seat"></div>
+              <div id="seat-24" class="seat"></div>
+            </div>
+            <div id="row-4" class="seat-row">
+              <div id="seat-25" class="seat"></div>
+              <div id="seat-26" class="seat"></div>
+              <div id="seat-27" class="seat"></div>
+              <div id="seat-28" class="seat"></div>
+              <div id="seat-29" class="seat"></div>
+              <div id="seat-30" class="seat"></div>
+              <div id="seat-31" class="seat"></div>
+              <div id="seat-32" class="seat"></div>
+            </div>
+            <div id="row-5" class="seat-row">
+              <div id="seat-33" class="seat"></div>
+              <div id="seat-34" class="seat"></div>
+              <div id="seat-35" class="seat"></div>
+              <div id="seat-36" class="seat"></div>
+              <div id="seat-37" class="seat"></div>
+              <div id="seat-38" class="seat"></div>
+              <div id="seat-39" class="seat"></div>
+              <div id="seat-40" class="seat"></div>
+            </div>
+            <div id="row-6" class="seat-row">
+              <div id="seat-41" class="seat"></div>
+              <div id="seat-42" class="seat"></div>
+              <div id="seat-43" class="seat"></div>
+              <div id="seat-44" class="seat"></div>
+              <div id="seat-45" class="seat"></div>
+              <div id="seat-46" class="seat"></div>
+              <div id="seat-47" class="seat"></div>
+              <div id="seat-48" class="seat"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-group">
+        <p>
+          You have selected <span id="num-of-seats"> 0</span> seats for price of
+          $ <span id="ticket-price">0</span>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
