@@ -1,137 +1,132 @@
 'use strict';
 
+const movies = [
+  { name: 'Zorro', price: 10, bookedSeats: [] },
+  { name: 'Baywatch', price: 12, bookedSeats: [] },
+  { name: 'Dum and Dummer', price: 9, bookedSeats: [] },
+  { name: 'James Bond', price: 13, bookedSeats: [] },
+  { name: 'Tarzan', price: 6, bookedSeats: [] },
+  { name: 'Ace Ventura', price: 10, bookedSeats: [] },
+];
+
 const seatGroupEl = document.querySelector('.seat-group');
 const numOfSeatsEl = document.getElementById('num-of-seats');
 const movieSelectorEl = document.getElementById('select');
 const ticketPriceEl = document.getElementById('ticket-price');
 const allSeats = document.querySelectorAll('.seat');
 
-/* get movie name */
+let currentMovie = movies[0];
 
-const getMovieName = function (el) {
-  return el.value.slice(0, el.value.length - 2).trim();
-};
+/* create selector options from movies array */
 
-const getTicketPrice = function (el) {
-  return el.value.slice(-2);
-};
+movies.forEach(film => {
+  const html = `<option value="${film.name} ${film.price}">${film.name} ${film.price}$</option>`;
 
-let selectedSeats;
-let currentMovieTicketPrice = getTicketPrice(movieSelectorEl);
-let currentMovie = getMovieName(movieSelectorEl);
-
-let bookedSeatsZorro = [];
-let bookedSeatsBaywatch = [];
-
-let currentArray =
-  getMovieName(movieSelectorEl) === 'Zorro'
-    ? bookedSeatsZorro
-    : bookedSeatsBaywatch;
+  movieSelectorEl.insertAdjacentHTML('beforeend', html);
+});
 
 /* FUNCTIONS */
 
-const updateText = function (currentArray) {
-  numOfSeatsEl.innerText = `${currentArray.length}`;
-  ticketPriceEl.innerText = `${currentArray.length * currentMovieTicketPrice}`;
+/* LOCAL STORAGE */
+
+const setLocalStorage = function (currentMovie) {
+  const data = JSON.stringify(currentMovie.bookedSeats);
+
+  localStorage.setItem(`${currentMovie.name}`, data);
 };
 
-const resetApp = function () {
+const getLocalStorage = function (currentMovie) {
+  const data = JSON.parse(localStorage.getItem(`${currentMovie.name}`));
+
+  if (!data) return;
+
+  currentMovie.bookedSeats = data;
+};
+
+const reset = function () {
   localStorage.clear();
-  allSeats.forEach(seat => {
-    seat.classList.remove('occupied-seat');
-    seat.classList.remove('selected-seat');
-  });
 };
 
-/* resetApp(); */
+/* reset(); */
 
-const updateSeats = function (currentArray) {
+/* UPDATE BOOKEDSEATS ARRAY */
+
+const addSeatBookings = function (seat) {
+  currentMovie.bookedSeats.push(seat);
+};
+
+const removeSeatBookings = function (seat) {
+  const i = currentMovie.bookedSeats.findIndex(value => value === seat);
+  currentMovie.bookedSeats.splice(i, 1);
+};
+
+/* CHANGE SEAT COLOR */
+
+const changeSeatColor = function (e) {
+  if (!e.target.classList.contains('seat')) return;
+
+  if (e.target.classList.contains('occupied-seat')) return;
+
+  if (!e.target.classList.contains('selected-seat')) {
+    e.target.classList.add('selected-seat');
+    addSeatBookings(e.target.id);
+  } else {
+    e.target.classList.remove('selected-seat');
+    removeSeatBookings(e.target.id);
+  }
+};
+
+/* UPDATE TEXT */
+
+const updateText = function (currentMovie) {
+  numOfSeatsEl.innerText = currentMovie.bookedSeats.length;
+  ticketPriceEl.innerText = `${
+    currentMovie.price * currentMovie.bookedSeats.length
+  }`;
+};
+
+/* UPDATE SEATS */
+
+const updateSeats = function (currentMovie) {
   allSeats.forEach(seat => {
     seat.classList.remove('selected-seat');
     seat.classList.remove('occupied-seat');
   });
 
-  currentArray.forEach(seat => {
+  currentMovie.bookedSeats.forEach(seat => {
     document.getElementById(`${seat}`).classList.add('occupied-seat');
   });
 };
 
-const bookASeat = function (e) {
-  if (e.target.id.includes('seat')) {
-    if (e.target.classList.contains('occupied-seat')) return;
+/* UPDATE CURRENT MOVIE */
 
-    if (e.target.classList.contains('selected-seat')) {
-      e.target.classList.remove('selected-seat');
-      removeSeatFromArray(currentArray, e);
-    } else {
-      e.target.classList.add('selected-seat');
-      addSeatToArray(currentArray, e);
-    }
-  }
-};
-
-/* ADD BOOKED SEATS TO ARRAY */
-
-const addSeatToArray = function (arr, e) {
-  arr.push(e.target.id);
-};
-
-const removeSeatFromArray = function (arr, e) {
-  const i = arr.findIndex(seat => seat === e.target.id);
-  arr.splice(i, 1);
-};
-
-/* ARRAYS TO AND FROM LOCAL STORAGE */
-
-const setLocalStorage = function (key, arr) {
-  const data = JSON.stringify(arr);
-  localStorage.setItem(key, data);
-};
-
-const getLocalStorage = function (key, arr) {
-  selectedSeats = arr.length;
-  const data = JSON.parse(localStorage.getItem(key));
-
-  if (!data) return;
-
-  currentArray = data;
-
-  currentArray.forEach(id => {
-    document.getElementById(`${id}`).classList.add('selected-seat');
-  });
-};
-
-/* UPDATE CURRENT VALUES */
-
-const updateCurrents = function (e) {
-  /* current movie */
-  currentMovie = e.target.value.slice(0, e.target.value.length - 2).trim();
-
-  /* current ticket price */
-  currentMovieTicketPrice = +e.target.value.slice(-2);
-
-  /* current array */
-  currentArray =
-    currentMovie === 'Zorro' ? bookedSeatsZorro : bookedSeatsBaywatch;
+const changeCurrentMovie = function (e) {
+  const filmName = e.target.value.slice(0, e.target.value.length - 2).trim();
+  currentMovie = movies.find(movie => movie.name === filmName);
 };
 
 /* EVENT LISTENERS */
 
 window.addEventListener('load', function () {
-  getLocalStorage(currentMovie, currentArray);
-  updateSeats(currentArray);
-  updateText(currentArray);
+  getLocalStorage(currentMovie);
+  updateSeats(currentMovie);
+  updateText(currentMovie);
 });
 
 seatGroupEl.addEventListener('click', function (e) {
-  bookASeat(e);
-  setLocalStorage(currentMovie, currentArray);
-  updateText(currentArray);
+  changeSeatColor(e);
+  updateText(currentMovie);
 });
 
 movieSelectorEl.addEventListener('change', function (e) {
-  updateCurrents(e);
-  getLocalStorage(currentMovie, currentArray);
-  updateSeats(currentArray);
-  updateText(currentArray);
+  changeCurrentMovie(e);
+  getLocalStorage(currentMovie);
+  updateSeats(currentMovie);
+  updateText(currentMovie);
+});
+
+document.querySelector('.btn').addEventListener('click', function () {
+  setLocalStorage(currentMovie);
+  updateSeats(currentMovie);
+  updateText(currentMovie);
 });
