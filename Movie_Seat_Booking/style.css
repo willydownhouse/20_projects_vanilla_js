@@ -27,6 +27,10 @@ span {
   color: rgba(122, 226, 174, 0.986);
 }
 
+p {
+  margin-bottom: 2rem;
+}
+
 select {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   /* for Firefox */
@@ -61,6 +65,10 @@ select {
   margin-bottom: 2rem;
 }
 
+.container-group.last {
+  flex-direction: column;
+}
+
 .pair {
   display: flex;
   align-items: center;
@@ -80,8 +88,8 @@ select {
   height: 100px;
   background: #e5e5e5;
   margin-bottom: 20px;
-  /* transform: skewX(7deg); */
-  box-shadow: 3px 3px 3px #333;
+  transform: rotateX(-45deg);
+  box-shadow: 0px 3px 10px rgba(255, 255, 255, 0.7);
 }
 
 .seat-group {
@@ -102,8 +110,8 @@ select {
   width: 14px;
   height: 12px;
   background: #333;
-  border-top-left-radius: 60%;
-  border-top-right-radius: 60%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .seat1 {
@@ -113,6 +121,18 @@ select {
   background: #333;
   border-top-left-radius: 60%;
   border-top-right-radius: 60%;
+}
+
+.btn {
+  padding: 0.5rem 2.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+  background: #60df60;
+  outline: none;
+}
+
+.btn:hover {
+  background: #4adb4a;
 }
 
 .occupied-seat {

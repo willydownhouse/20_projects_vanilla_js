@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: #222;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.container {
+  width: 750px;
+  height: 500px;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.video {
+  width: 100%;
+  height: 90%;
+  background: url('../img/poster.png') no-repeat center center;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+}
+
+.controller {
+  width: 100%;
+  height: 10%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 10px;
+
+  background: #444;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .btn i {
+    width: 20px;
+    cursor: pointer;
+  }
+
+  #progress {
+    height: 5px;
+    width: 600px;
+  }
+
+  /* .audioline {
+    position: relative;
+    height: 5px;
+    width: 600px;
+    background: blue;
+
+    .block {
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 5px;
+      height: 15px;
+      background: #fff;
+      z-index: 1;
+    }
+  } */
+}
