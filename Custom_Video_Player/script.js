@@ -6,6 +6,7 @@ const stopEl = document.getElementById('stop');
 const time = document.querySelector('.time');
 const audioline = document.querySelector('.audioline');
 const audioblock = document.querySelector('.block');
+const progressBar = document.getElementById('progress');
 
 let isPlaying = false;
 
@@ -31,15 +32,31 @@ function setTime() {
   time.innerHTML = `<p>${mediaTime}</p>`;
 }
 
+/* FUNCTIONS */
+
+const updateProgress = function () {
+  /* console.log(videoEl.currentTime); */
+  progressBar.value = (videoEl.currentTime / videoEl.duration) * 100;
+};
+
+const setVideoProgress = function () {
+  videoEl.currentTime = (+progressBar.value * videoEl.duration) / 100;
+};
+
 /* EVENT LISTENERS */
 
 playEl.addEventListener('click', function (e) {
+  if (isPlaying) return;
+
   videoEl.innerHTML = `<source src="videos/gone.mp4" type="video/mp4" />`;
   videoEl.play();
+  updateProgress();
   isPlaying = true;
 });
 
 stopEl.addEventListener('click', function (e) {
+  if (!isPlaying) return;
+
   videoEl.pause();
   isPlaying = false;
 });
@@ -55,9 +72,12 @@ videoEl.addEventListener('click', function (e) {
     videoEl.pause();
     isPlaying = false;
   } else {
+    videoEl.innerHTML = `<source src="videos/gone.mp4" type="video/mp4" />`;
     videoEl.play();
     isPlaying = true;
   }
 });
 
 videoEl.addEventListener('timeupdate', setTime);
+videoEl.addEventListener('timeupdate', updateProgress);
+progressBar.addEventListener('change', setVideoProgress);
