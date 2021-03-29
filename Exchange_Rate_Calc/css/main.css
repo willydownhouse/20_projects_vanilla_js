@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #e5e5e5;
+  color: #111;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container {
+  padding: 1rem;
+  /* background: #fff; */
+}
+
+.container select {
+  /* -moz-appearance: none;
+    -webkit-appearance: none; */
+  outline: none;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.header img {
+  width: 100px;
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  margin-bottom: 2rem;
+  color: #4cb975;
+}
+
+.exchange {
+  padding: 0 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.exchange .group {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.exchange #currency-1,
+.exchange #currency-2 {
+  padding: 5px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.exchange #amount-1 {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.2rem;
+  background: #fff;
+  cursor: pointer;
+  padding: 5px;
+  outline: none;
+  width: 5rem;
+}
+
+.exchange #amount-2 {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.exchange .btn {
+  border: none;
+  padding: 5px 10px;
+  background: #4cb975;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.exchange .btn:hover {
+  background: #66c389;
+}
+
+.exchange p {
+  color: #4cb975;
+}
+
+.hidden {
+  display: none;
+}
+/*# sourceMappingURL=main.css.map */

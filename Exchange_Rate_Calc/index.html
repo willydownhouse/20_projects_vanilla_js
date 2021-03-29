@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/main.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Exchange Rate Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img src="img/money.png" alt="logo" />
+        <h1>Exchange Rate Calculator</h1>
+        <h3>Choose the currency and the amount to get the exchange rate</h3>
+      </header>
+      <form class="exchange">
+        <div class="group">
+          <select name="currency" id="currency-1">
+            <!-- <option value="$">USD</option> -->
+          </select>
+          <input name="amount" id="amount-1">
+            <!-- <option value="a">23</option> -->
+          </input>
+        </div>
+        <div class="group">
+          <button type="submit" class="btn">Calculate</button>
+          <button id="swap" class="btn">Swap</button>
+          <p class="one"></p>
+        </div>
+        <div class="group">
+          <select name="currency-2" id="currency-2">
+            <!-- <option value="$">EUR</option> -->
+          </select>
+          <select name="amount-2" id="amount-2">
+            <!-- <option value="b">10</option> -->
+          </select>
+        </div>
+        <!-- <button type="submit" class="hidden">submit</button> -->
+      </form>
+    </div>
+  </body>
+</html>
