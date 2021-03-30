@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Menu Slider & Modal</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hamburger-menu">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <header class="header">
+        <div class="header-content">
+          <h1>My Landing Page</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi,
+            ipsam?
+          </p>
+          <a class="btn" href="#">Sign Up</a>
+        </div>
+      </header>
+
+      <div class="section">
+        <div class="section-container">
+          <h2>What is this landing page about?</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque,
+            deleniti commodi. Nobis odit pariatur ut est animi sit at aspernatur
+            maxime vero quis, tenetur quae facilis, quod blanditiis saepe
+            repudiandae repellendus cumque laudantium accusantium deserunt! Modi
+            aspernatur aut dignissimos doloribus dolores debitis nihil quas
+            provident id veniam harum, deserunt recusandae.
+          </p>
+          <h2>Tell me more</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+            tempora saepe accusantium facilis fugit animi dolorum autem et?
+            Maxime vitae veniam, provident pariatur totam quibusdam reiciendis
+            est nobis nostrum doloribus.
+          </p>
+          <h2>Benefits</h2>
+          <ul>
+            <li>Lifetime access</li>
+            <li>30 day money back</li>
+            <li>Tailored customer Support</li>
+          </ul>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus eum
+            voluptatum dolore qui ratione culpa ad numquam earum nam neque vel
+            voluptates id beatae animi enim itaque mollitia nesciunt, adipisci
+            a! Neque debitis dignissimos expedita delectus perferendis libero
+            eum voluptates vitae aliquid, deserunt ut aut rerum nobis sint
+            dolore accusantium beatae. Odio, reprehenderit adipisci nulla
+            tempora nihil nisi quia dolore sed minima temporibus possimus est
+            eveniet tempore doloremque voluptate sint.
+          </p>
+        </div>
+      </div>
+
+      <div class="modal hidden">
+        <header class="modal-header">
+          <h2>Sign Up</h2>
+          <button class="modal-close">X</button>
+        </header>
+        <div class="modal-content">
+          <h3>Register with us to get offers, support and more</h3>
+          <form action="#" class="modal-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input placeholder="Name" type="name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input placeholder="Email" type="email" />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input placeholder="Password" type="password" />
+            </div>
+            <div class="form-group">
+              <label for="password">Confirm Password</label>
+              <input placeholder="Confirm Password" type="password" />
+            </div>
+            <button class="btn" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
+    </div>
+
+    <div class="sidebar">
+      <div class="side-container">
+        <div class="img"></div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
