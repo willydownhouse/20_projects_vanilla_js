@@ -1,6 +1,7 @@
 const words = ['programming', 'javascript', 'asshole', 'lyngen'];
 const guessedWrongLetters = [];
 const guessedAllLetters = [];
+const guessedRight = [];
 let word = [];
 let wrongAnswers = 0;
 
@@ -25,8 +26,7 @@ allBodyParts.forEach(part => part.classList.add('hidden'));
 /* CHOOSE AND RENDER RANDOM WORD */
 
 const randomWordAndRenderIt = function () {
-  word = [...words[Math.trunc(Math.random() * 4)]];
-  console.log(word);
+  word = [...words[Math.trunc(Math.random() * words.length)]];
 
   let str = '';
 
@@ -40,6 +40,8 @@ const randomWordAndRenderIt = function () {
 
 randomWordAndRenderIt();
 
+const allSpans = Array.from(document.querySelectorAll('.span'));
+
 /* RENDER ERROR MESSAGE */
 
 const renderErrorMessage = function () {
@@ -52,6 +54,25 @@ const renderErrorMessage = function () {
   }, 2000);
 };
 
+const renderModal = function (value) {
+  modal.innerHTML = '';
+
+  const html = `<h1>You ${value} the game! ${
+    value === 'lost' ? '🤣' : '😎'
+  }</h1>
+  <button class="btn">Play again</button>`;
+
+  modal.innerHTML = html;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('reveal');
+  overlay.classList.remove('hidden');
+
+  document.querySelector('.btn').addEventListener('click', function () {
+    location.reload();
+  });
+};
+
 const checkWrongAnswers = function (num) {
   if (num === 1) head.classList.remove('hidden');
   if (num === 2) body.classList.remove('hidden');
@@ -59,9 +80,7 @@ const checkWrongAnswers = function (num) {
   if (num === 4) leg2.classList.remove('hidden');
   if (num === 5) {
     hands.classList.remove('hidden');
-    modal.classList.remove('hidden');
-    modal.classList.add('reveal');
-    overlay.classList.remove('hidden');
+    renderModal('lost');
   }
 };
 
@@ -102,6 +121,10 @@ document.addEventListener('keydown', function (e) {
     word.forEach((letter, i) => {
       if (letter === e.key) {
         document.getElementById(`letter-${i}`).classList.remove('hidden');
+
+        if (allSpans.every(el => !el.classList.contains('hidden'))) {
+          renderModal('won');
+        }
       }
     });
   } else {
@@ -111,8 +134,4 @@ document.addEventListener('keydown', function (e) {
     checkWrongAnswers(wrongAnswers);
     renderWrongAnswers();
   }
-});
-
-btnPlayAgain.addEventListener('click', function () {
-  location.reload();
 });
