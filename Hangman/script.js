@@ -1,7 +1,7 @@
 const words = ['programming', 'javascript', 'asshole', 'lyngen'];
 const guessedWrongLetters = [];
 const guessedAllLetters = [];
-const guessedRight = [];
+
 let word = [];
 let wrongAnswers = 0;
 
@@ -107,9 +107,7 @@ const checkIfGuessed = function (letter) {
 /* EVENT LISTENERS */
 
 document.addEventListener('keydown', function (e) {
-  if (!modal.classList.contains('hidden')) return;
-  /* no numbers */
-  if (isFinite(+e.key)) return;
+  if (e.keyCode < 65 || e.keyCode > 90) return;
 
   /* check if already guessed */
   checkIfGuessed(e.key);

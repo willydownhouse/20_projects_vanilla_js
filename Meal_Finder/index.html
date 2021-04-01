@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script
+      src="https://kit.fontawesome.com/415dfa391f.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Meal Finder</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Meal Finder</h1>
+        <div class="search">
+          <form action="" class="form">
+            <input
+              id="input"
+              type="text"
+              placeholder="Search for meals or keywords"
+            />
+            <button id="input-btn" type="submit" class="hidden" />
+          </form>
+          <button id="random-meal"><i class="fas fa-random"></i></button>
+        </div>
+      </header>
+
+      <div class="meals hidden">
+        <ul>
+          <li>
+            <img
+              src="https://www.themealdb.com/images/media/meals/ypuxtw1511297463.jpg"
+              alt="meal"
+            />
+          </li>
+          <li>
+            <img
+              src="https://www.themealdb.com/images/media/meals/ypuxtw1511297463.jpg"
+              alt="meal"
+            />
+          </li>
+          <li>
+            <img
+              src="https://www.themealdb.com/images/media/meals/ypuxtw1511297463.jpg"
+              alt="meal"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <div class="recipe hidden">
+        <!-- <h2 class="title">Chili</h2>
+        <img
+          src="https://www.themealdb.com/images/media/meals/ypuxtw1511297463.jpg"
+          alt=""
+        />
+        <div class="info">
+          <div class="ingredients">
+            <p>Ingredients</p>
+            <ul>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+              <li>✔ Tomato</li>
+            </ul>
+          </div>
+          <div class="instructions">
+            <h4>Instructions</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+              officia pariatur magnam tempora dicta rerum harum aut molestiae
+              quod numquam deserunt sunt laudantium in sint, optio quo modi
+              repudiandae consectetur quam dolores ullam porro voluptatum
+              exercitationem ratione? Ut quasi molestias, quae voluptates soluta
+              id. Similique accusamus commodi nam incidunt esse tempora rerum
+              ratione? Ad corrupti blanditiis explicabo doloremque natus
+              distinctio fuga iusto at temporibus reiciendis eligendi ducimus
+              aliquam autem sint illum nihil saepe inventore optio recusandae,
+              reprehenderit ex. Ducimus unde minima harum saepe a! Mollitia
+              dolores quasi ea esse et quia, explicabo ab dolorum fugit
+              necessitatibus distinctio, corrupti, pariatur possimus.
+            </p>
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="error-window hidden">
+      <h2 id="error-text"></h2>
+      <button id="try-again">Please try again</button>
+    </div>
+    <div class="overlay hidden"></div>
+  </body>
+</html>
