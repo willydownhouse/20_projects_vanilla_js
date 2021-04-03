@@ -5,11 +5,14 @@ const recipeEl = document.querySelector('.recipe');
 const input = document.getElementById('input');
 const form = document.querySelector('.form');
 const errorWindow = document.querySelector('.error-window');
+const mealsEl = document.querySelector('.meals');
 
 const overlay = document.querySelector('.overlay');
 const btnTryAgain = document.getElementById('try-again');
 
 const errorTextEl = document.getElementById('error-text');
+
+let recipes = [];
 
 /* AJAX CALLS */
 
@@ -22,13 +25,18 @@ const getRecipeByNameOrIngredient = async function (name) {
     );
 
     const data = await res.json();
-    console.log(data.meals);
+
+    recipes = data.meals;
 
     if (!data.meals) throw new Error('Did not find any recipes! 😎');
 
-    if (data.meals.length === 1) renderRecipe(data.meals[0]);
+    if (data.meals.length === 1) {
+      renderRecipe(data.meals[0]);
+      return;
+    }
 
     /* more than 1 recipes */
+    renderMeals(data.meals);
     /////
   } catch (err) {
     renderErrorMessageWindow(err.message);
@@ -39,6 +47,8 @@ const getRecipeByNameOrIngredient = async function (name) {
 
 const getOneRandomRecipe = async function () {
   try {
+    mealsEl.innerHTML = '';
+
     const res = await fetch(
       'https://www.themealdb.com/api/json/v1/1/random.php'
     );
@@ -123,6 +133,21 @@ const renderRecipe = function (recipe) {
   recipeEl.innerHTML = html;
 };
 
+const renderMeals = function (meals) {
+  mealsEl.innerHTML = '';
+
+  mealsEl.classList.remove('hidden');
+
+  const html = `<ul>${meals
+    .map(meal => (meal = meal.strMealThumb))
+    .map((url, i) => {
+      return `<li><img id="${i}" src="${url}" class="img"/></li>`;
+    })
+    .join('')}</ul>`;
+
+  mealsEl.innerHTML = html;
+};
+
 /* getRecipeByNameOrIngredient('meat'); */
 
 /* EVENT LISTENERS */
@@ -137,11 +162,25 @@ form.addEventListener('submit', function (e) {
   /* get new recipes */
   const name = input.value;
 
-  getRecipeByNameOrIngredient(name);
+  if (name) {
+    getRecipeByNameOrIngredient(name);
+  } else {
+    alert('Please enter meal or keyword.');
+  }
 
   input.value = '';
 });
 
 btnTryAgain.addEventListener('click', function () {
   location.reload();
+});
+
+mealsEl.addEventListener('click', function (e) {
+  if (!e.target.classList.contains('img')) return;
+
+  const index = +e.target.id;
+
+  renderRecipe(recipes[index]);
+
+  recipeEl.scrollIntoView({ behavior: 'smooth' });
 });

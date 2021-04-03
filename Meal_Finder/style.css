@@ -61,12 +61,18 @@ ul {
 /* MEALS */
 
 .meals {
+  padding: 1rem;
   width: 100%;
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .meals ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0.5rem;
 }
 
 .meals ul li {
@@ -196,4 +202,28 @@ ul {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 800px) {
+  .meals ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5rem;
+  }
+
+  .title {
+    top: 9%;
+  }
+}
+
+@media (max-width: 500px) {
+  .meals ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0.2rem;
+  }
+
+  .title {
+    top: 5%;
+  }
 }
