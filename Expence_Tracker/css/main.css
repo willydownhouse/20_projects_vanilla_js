@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans Condensed', sans-serif;
+  background: #f4f4f4;
+  padding: 0.5rem 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.green {
+  color: #98cb98;
+}
+
+.container {
+  max-width: 300px;
+  margin: auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+.container h1 {
+  margin-bottom: 1.5rem;
+}
+
+.box {
+  text-align: start;
+}
+
+/* CONTAINER BALANCE */
+.cont-balance {
+  margin-bottom: 1rem;
+}
+
+.cont-balance h5 {
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.income-expence {
+  background: #fff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 1rem 3rem;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+          box-shadow: 0 8px 6px -6px #999;
+}
+
+.income-expence .left {
+  width: 50%;
+  border-right: 1px dotted #f4f4f4;
+}
+
+.income-expence p {
+  font-weight: bold;
+}
+
+/* CONTAINER HISTORY */
+.cont-history {
+  margin-bottom: 1rem;
+}
+
+.cont-history h3 {
+  border-bottom: 1px dotted #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.cont-history p {
+  font-weight: bold;
+}
+
+.expence {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.3rem;
+  background: #fff;
+  margin-bottom: 0.5rem;
+  border-right: 3px solid #ff0000;
+  cursor: pointer;
+}
+
+.expence button {
+  position: absolute;
+  top: 20%;
+  left: -5%;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 2px;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+.expence:hover button {
+  opacity: 1;
+}
+
+.income {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.3rem;
+  background: #fff;
+  margin-bottom: 0.5rem;
+  border-right: 3px solid #98cb98;
+  cursor: pointer;
+}
+
+.income button {
+  position: absolute;
+  top: 20%;
+  left: -5%;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 2px;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  cursor: pointer;
+}
+
+.income:hover button {
+  opacity: 1;
+}
+
+/* CONTAINER ADD */
+.cont-add {
+  margin-bottom: 1rem;
+}
+
+.cont-add h3 {
+  border-bottom: 1px dotted #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.form .form-group {
+  margin-bottom: 0.5rem;
+}
+
+.form .form-group label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form .form-group input {
+  height: 31.6px;
+  padding: 0.3rem;
+  outline: none;
+}
+
+.form .form-group p {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.form #label-amount {
+  margin-bottom: 0;
+}
+
+.form #amount {
+  margin-bottom: 0.5rem;
+}
+
+.form .btn {
+  padding: 0.5rem 1rem;
+  background: #8e6b8e;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  border: none;
+}
+
+.form .btn:hover {
+  background: #800080;
+}
+/*# sourceMappingURL=main.css.map */
