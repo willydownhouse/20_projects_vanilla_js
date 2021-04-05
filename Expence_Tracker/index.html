@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="css/main.css" />
 
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 
     <title>Expence Tracker</title>
   </head>
@@ -23,15 +23,15 @@
       <div class="box">
         <div class="cont-balance">
           <h2>YOUR BALANCE</h2>
-          <h5 id="balance">$200.00</h5>
+          <h5 id="balance">$00.00</h5>
           <div class="income-expence flex">
             <div class="left">
               <h3>INCOME</h3>
-              <p class="green">$ 300.00</p>
+              <p id="summary-income" class="green">$ 0.00</p>
             </div>
             <div class="right">
               <h3>EXPENCE</h3>
-              <p class="red">$ 100.00</p>
+              <p id="summary-expence" class="red">$ 0.00</p>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
           <h3>History</h3>
           <div class="history">
             <ul id="list">
-              <li>
+              <!-- <li>
                 <div class="expence">
                   <button>X</button>
                   <h4>Camera</h4>
@@ -52,7 +52,7 @@
                   <h4>Cash</h4>
                   <p>300</p>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>

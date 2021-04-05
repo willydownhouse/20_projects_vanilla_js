@@ -224,7 +224,7 @@ h2 {
 
 .form .btn {
   padding: 0.5rem 1rem;
-  background: #8e6b8e;
+  background: #800080;
   color: #fff;
   outline: none;
   cursor: pointer;
@@ -232,6 +232,6 @@ h2 {
 }
 
 .form .btn:hover {
-  background: #800080;
+  background: #940694;
 }
 /*# sourceMappingURL=main.css.map */
