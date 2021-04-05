@@ -27,7 +27,7 @@ const updateDom = function (transactions) {
 
   /* BALANCE */
   balanceEl.innerText = `$${transactions
-    .map(transaction => (transaction = transaction.amount))
+    .map(transaction => transaction.amount)
     .reduce((acc, value) => {
       return acc + value;
     }, 0)
@@ -36,13 +36,9 @@ const updateDom = function (transactions) {
   /* BALANCE & EXPENCE BOX */
 
   /* check if positive values */
-  if (
-    transactions
-      .map(transaction => (transaction = transaction.amount))
-      .some(el => el > 0)
-  ) {
+  if (transactions.map(transaction => transaction.amount).some(el => el > 0)) {
     summaryIncomeEl.innerText = `$${transactions
-      .map(transaction => (transaction = transaction.amount))
+      .map(transaction => transaction.amount)
       .filter(el => el > 0)
       .reduce((acc, value) => acc + value)
       .toFixed(2)}`;
@@ -50,14 +46,10 @@ const updateDom = function (transactions) {
 
   /* check if negative values */
 
-  if (
-    transactions
-      .map(transaction => (transaction = transaction.amount))
-      .some(el => el < 0)
-  ) {
+  if (transactions.map(transaction => transaction.amount).some(el => el < 0)) {
     summaryExpenceEl.innerText = `$${Math.abs(
       transactions
-        .map(transaction => (transaction = transaction.amount))
+        .map(transaction => transaction.amount)
         .filter(el => el < 0)
         .reduce((acc, value) => acc + value)
         .toFixed(2)
@@ -72,7 +64,7 @@ const updateDom = function (transactions) {
       return `
         <li>
             <div class="${transaction.type}">
-                <button class="btn-x">X</button>
+                <button id="${transaction.id}" onclick="deleteItem(${transaction.id})" class="btn-x">X</button>
                 <h4>${transaction.name}</h4>
                 <p>$${transaction.amount}</p>
             </div>
@@ -82,6 +74,16 @@ const updateDom = function (transactions) {
     .join('');
 
   listEl.innerHTML = html;
+
+  /* addEventListenerToDeleteButton(); */
+};
+
+const deleteItem = function (id) {
+  const index = transactions.findIndex(transaction => transaction.id === id);
+  transactions.splice(index, 1);
+
+  setLocalStorage(transactions);
+  location.reload();
 };
 
 const setLocalStorage = function (transactions) {
@@ -96,6 +98,17 @@ const getLocalStorage = function () {
 
   transactions = data;
 };
+
+// const addEventListenerToDeleteButton = function () {
+//   const btnDelete = document.querySelectorAll('.btn-x');
+//   btnDelete.forEach(btn => {
+//     btn.addEventListener('click', function (e) {
+//       transactions.splice(+e.target.id, 1);
+//       setLocalStorage(transactions);
+//       location.reload();
+//     });
+//   });
+// };
 
 /* EVENT LISTENERS */
 
@@ -112,8 +125,10 @@ btnAddEl.addEventListener('click', function (e) {
 
   const type = amount > 0 ? 'income' : 'expence';
 
+  const id = Math.floor(Math.random() * 10000000);
+
   /* add amount to tranactions array */
-  transactions.push(new Transaction(type, name, amount));
+  transactions.push(new Transaction(id, type, name, amount));
 
   console.log(transactions);
 
@@ -121,7 +136,6 @@ btnAddEl.addEventListener('click', function (e) {
   updateDom(transactions);
 
   /* setLocalStorage */
-
   setLocalStorage(transactions);
 
   /* clear input fields */
@@ -134,7 +148,8 @@ window.addEventListener('load', function () {
 });
 
 class Transaction {
-  constructor(type, name, amount) {
+  constructor(id, type, name, amount) {
+    this.id = id;
     this.type = type;
     this.name = name;
     this.amount = amount;

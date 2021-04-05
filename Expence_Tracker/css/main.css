@@ -127,9 +127,21 @@ h2 {
   margin-bottom: 0.5rem;
   border-right: 3px solid #ff0000;
   cursor: pointer;
+  /* .btn-x {
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 2px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    cursor: pointer;
+  } */
 }
 
-.expence button {
+.btn-x {
   position: absolute;
   top: 20%;
   left: -5%;
@@ -141,9 +153,10 @@ h2 {
   -webkit-transition: opacity 0.5s ease;
   transition: opacity 0.5s ease;
   cursor: pointer;
+  outline: none;
 }
 
-.expence:hover button {
+.expence:hover .btn-x {
   opacity: 1;
 }
 
@@ -165,21 +178,7 @@ h2 {
   cursor: pointer;
 }
 
-.income button {
-  position: absolute;
-  top: 20%;
-  left: -5%;
-  background: #ff0000;
-  color: #fff;
-  border: none;
-  padding: 2px;
-  opacity: 0;
-  -webkit-transition: opacity 0.5s ease;
-  transition: opacity 0.5s ease;
-  cursor: pointer;
-}
-
-.income:hover button {
+.income:hover .btn-x {
   opacity: 1;
 }
 
