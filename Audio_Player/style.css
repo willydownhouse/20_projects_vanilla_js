@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+body {
+  background: #ffccff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 300px;
+  height: 250px;
+  position: relative;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controller {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: #f4f4f4;
+  border-radius: 10px;
+  box-shadow: 0 12px 6px -6px #222;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 5;
+}
+
+.controller i {
+  margin-right: 0.6rem;
+  color: #b7b7b7;
+  cursor: pointer;
+}
+
+.controller i:hover {
+  color: #333;
+}
+
+#img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: url('./images/hey.jpg') no-repeat center center/cover;
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  z-index: 10;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.popup {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  padding: 1rem 2rem;
+  background: #f4f4f4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  opacity: 0.7;
+  transition: transform 1s ease;
+}
+
+.up {
+  transform: translateY(-100%);
+}
+
+.popup p {
+  font-size: 0.8rem;
+}
+
+.hidden {
+  display: none;
+}
