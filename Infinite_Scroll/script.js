@@ -4,17 +4,25 @@
 
 const list = document.getElementById('list');
 const footer = document.querySelector('.footer');
+const input = document.getElementById('input-filter');
+const spinner = document.querySelector('.spinner');
+const spinIcon = document.getElementById('spin-icon');
 
 let posts = 5;
 let page = 1;
+const postsArray = [];
 
 const getPosts = async function (posts, page) {
   try {
+    spinner.classList.remove('hidden');
+
     const res = await fetch(
       `https://jsonplaceholder.typicode.com/posts?_limit=${posts}&_page=${page}`
     );
 
     const data = await res.json();
+
+    postsArray.push(...data);
     renderPosts(data);
   } catch (err) {
     console.log(err);
@@ -22,6 +30,8 @@ const getPosts = async function (posts, page) {
 };
 
 const renderPosts = function (arr) {
+  spinner.classList.add('hidden');
+
   const html = arr
     .map(post => {
       return `
@@ -54,11 +64,25 @@ const getNewSetPosts = function (entries) {
 
 const observer = new IntersectionObserver(getNewSetPosts, {
   root: null,
-  rootMargin: '100px',
+  rootMargin: '0px',
 });
 
 observer.observe(footer);
 
-/* list.addEventListener('click', function (e) {
-  console.log(e.target.closest('li').id);
-}); */
+/* event listeners */
+
+input.addEventListener('input', function (e) {
+  observer.unobserve(footer);
+
+  list.innerHTML = '';
+
+  const arr = postsArray.filter(
+    post =>
+      post.title.includes(e.target.value) || post.body.includes(e.target.value)
+  );
+  renderPosts(arr);
+});
+
+input.addEventListener('blur', function (e) {
+  observer.observe(footer);
+});

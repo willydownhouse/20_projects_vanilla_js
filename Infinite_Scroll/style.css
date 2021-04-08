@@ -21,6 +21,7 @@ input {
 }
 
 .container {
+  min-height: 100vh;
   max-width: 800px;
   padding: 1rem;
   margin: auto;
@@ -79,4 +80,26 @@ input {
 
 .content h3 {
   font-size: 1rem;
+}
+
+.spin {
+  animation: rotate 2s linear infinite;
+}
+
+#spin-icon {
+  color: #fff;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hidden {
+  display: none;
 }
