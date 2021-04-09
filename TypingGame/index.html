@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Typing Game</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="difficulty-bar">
+        <div class="box">
+          <h2>Difficulty</h2>
+          <select name="difficulty" id="difficulty-selector">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+      </div>
+      <div class="game-container">
+        <div class="margin title">
+          <h1>✔ Speed Typer 😎💥</h1>
+        </div>
+        <div class="margin time-speed">
+          <h3>Time Left: <span id="time"></span></h3>
+          <h3 id="score">Score: 0</h3>
+        </div>
+        <div class="margin game">
+          <h4 class="margin">Type the following</h4>
+          <p id="word" class="margin">Beer</p>
+          <input id="input" type="text" />
+        </div>
+        <button class="btn">Change level</button>
+      </div>
+      <div class="modal-game-over game hidden">
+        <p>Game Over Loser 😊</p>
+        <p id="game-over-message"></p>
+        <button class="new-game">New Game</button>
+      </div>
+      <div class="overlay hidden"></div>
+    </div>
+  </body>
+</html>
