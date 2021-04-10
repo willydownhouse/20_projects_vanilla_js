@@ -1,6 +1,7 @@
 'use strict';
 
 const difSelector = document.getElementById('difficulty-selector');
+const difBar = document.querySelector('.difficulty-bar');
 const timeEl = document.getElementById('time');
 const scoreEl = document.getElementById('score');
 const wordEl = document.getElementById('word');
@@ -16,7 +17,7 @@ const easy = 6;
 const medium = 4;
 const hard = 2;
 
-const words = ['säm', 'kimi', 'mike'];
+const words = ['säm', 'kimi', 'mike', 'john', 'maria', 'ben'];
 let index = 0;
 let score = 0;
 let time = 30;
@@ -24,8 +25,15 @@ let currentDifficulty = easy;
 
 /* set first word */
 
+const setRandomWord = function () {
+  return words[Math.trunc(Math.random() * words.length)];
+};
+
+let currentWord = setRandomWord();
+
+inputEl.focus();
 timeEl.innerText = `${time}s`;
-wordEl.innerText = words[index];
+wordEl.innerText = currentWord;
 
 const setGameTime = function (time) {
   const timer = setInterval(() => {
@@ -50,9 +58,9 @@ const renderGameOver = function () {
 };
 
 const checkRightAnswer = function (e) {
-  if (e.target.value === words[index]) {
+  if (e.target.value === currentWord) {
     score++;
-    index++;
+
     scoreEl.innerText = `Score: ${score}`;
     inputEl.value = '';
     let currentTime = +timeEl.innerText.slice(0, -1) + currentDifficulty;
@@ -63,7 +71,8 @@ const checkRightAnswer = function (e) {
       index = 0;
     }
 
-    wordEl.innerText = words[index];
+    currentWord = setRandomWord();
+    wordEl.innerText = currentWord;
   }
 };
 
@@ -81,4 +90,11 @@ difSelector.addEventListener('change', function (e) {
   if (e.target.value === 'easy') currentDifficulty = easy;
   if (e.target.value === 'medium') currentDifficulty = medium;
   if (e.target.value === 'hard') currentDifficulty = hard;
+
+  clearInterval(timer);
+  timer = setGameTime(time + 1);
+});
+
+btnEl.addEventListener('click', function () {
+  difBar.classList.toggle('bar-down');
 });

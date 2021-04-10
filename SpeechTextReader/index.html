@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+
+    <title>Speech Text Reader</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Speech Text Reader</h1>
+        <button id="toggle" class="btn">Toggle Text Box</button>
+      </div>
+      <div class="grid-cont">
+        <div id="1" class="box">
+          <img src="./img/angry.jpg" alt="angry" />
+          <h3>I'm angry</h3>
+        </div>
+        <div id="2" class="box">
+          <img src="./img/drink.jpg" alt="thirsty" />
+          <h3>I'm thirsty</h3>
+        </div>
+        <div id="3" class="box">
+          <img src="./img/food.jpg" alt="hungry" />
+          <h3>I'm hungry</h3>
+        </div>
+        <div id="4" class="box">
+          <img src="./img/grandma.jpg" alt="grandma" />
+          <h3>I want to go to grandmams</h3>
+        </div>
+        <div id="5" class="box">
+          <img src="./img/happy.jpg" alt="happy" />
+          <h3>I'm happy</h3>
+        </div>
+        <div id="6" class="box">
+          <img src="./img/home.jpg" alt="home" />
+          <h3>I want to go home</h3>
+        </div>
+        <div id="7" class="box">
+          <img src="./img/hurt.jpg" alt="hurt" />
+          <h3>I'm hurt</h3>
+        </div>
+        <div id="8" class="box">
+          <img src="./img/outside.jpg" alt="outside" />
+          <h3>I want to go outside</h3>
+        </div>
+        <div id="9" class="box">
+          <img src="./img/sad.jpg" alt="sad" />
+          <h3>I'm sad</h3>
+        </div>
+        <div id="10" class="box">
+          <img src="./img/scared.jpg" alt="scared" />
+          <h3>I'm scared</h3>
+        </div>
+        <div id="11" class="box">
+          <img src="./img/school.jpg" alt="school" />
+          <h3>I want to go to school</h3>
+        </div>
+        <div id="12" class="box">
+          <img src="./img/tired.jpg" alt="tired" />
+          <h3>I'm tired</h3>
+        </div>
+      </div>
+      <div class="window">
+        <div class="win-cont">
+          <h2 class="margin">Select Voice</h2>
+          <select class="margin" name="voice" id="voice">
+            <option value="">some</option>
+          </select>
+          <textarea class="margin" id="textarea" cols="30" rows="10"></textarea>
+          <button id="read">Read Text</button>
+          <button id="close">X</button>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
+    </div>
+  </body>
+</html>
