@@ -1,0 +1,188 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  /* background: #f4f4f4; */
+  background: linear-gradient(50deg, #9e0d0a, #d18c70);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cont {
+  width: 500px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cont header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.cont header h1 {
+  margin-right: 20px;
+  color: #fff;
+}
+
+/* MEMORY CARD */
+
+.card-box {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1rem;
+  background: transparent;
+  border-radius: 5px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+/* .card-box:hover .flip-card-inner {
+  transform: rotateY(180deg);
+} */
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 12px 6px -6px #222;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+}
+
+/* Style the back side */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* //////////////////////////// */
+
+#left {
+  margin-right: 20px;
+}
+
+#remove {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: 0;
+  background: #860d0a;
+  color: #fff;
+  border: none;
+}
+
+/* ADD CARD */
+
+.add-card {
+  background: linear-gradient(50deg, #d18c70, #9e0d0a);
+}
+
+#x {
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  background: #860d0a;
+  border: 0;
+  outline: none;
+  color: #fff;
+}
+
+/* FORM */
+
+.form {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-style: inherit;
+  color: #fff;
+}
+.form-group textarea {
+  height: 50px;
+  padding: 5px;
+  outline: none;
+}
+
+.show {
+  animation: run 1s ease;
+}
+
+@keyframes run {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
