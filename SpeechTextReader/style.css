@@ -11,6 +11,7 @@ body {
 
 h1 {
   margin-bottom: 1.5rem;
+  font-style: normal;
 }
 
 .container {
@@ -38,6 +39,9 @@ h1 {
   cursor: pointer;
   color: #fff;
   border-radius: 5px;
+  font-family: 'Lato', sans-serif;
+
+  font-weight: bold;
 }
 
 .btn:hover {
@@ -74,6 +78,7 @@ h1 {
   padding: 0.5rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  font-style: italic;
 }
 
 .window {
@@ -107,6 +112,7 @@ h1 {
   height: 30px;
   padding-left: 5px;
   border: none;
+  outline: none;
 }
 
 #read {
@@ -137,6 +143,7 @@ h1 {
   border: 0;
   cursor: pointer;
   padding: 5px;
+  outline: none;
 }
 
 .overlay {
@@ -160,4 +167,36 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 1300px) {
+  .grid-cont {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .grid-cont {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .grid-cont {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .window {
+    top: 43%;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .box img {
+    width: 100%;
+  }
 }
