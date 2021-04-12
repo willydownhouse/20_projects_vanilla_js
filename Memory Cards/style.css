@@ -67,10 +67,6 @@ body {
   transform-style: preserve-3d;
 }
 
-/* .card-box:hover .flip-card-inner {
-  transform: rotateY(180deg);
-} */
-
 .flip {
   transform: rotateY(180deg);
 }
@@ -122,6 +118,10 @@ body {
   border: none;
 }
 
+.btn:hover {
+  background: #990000;
+}
+
 /* ADD CARD */
 
 .add-card {
@@ -137,6 +137,10 @@ body {
   border: 0;
   outline: none;
   color: #fff;
+}
+
+#x:hover {
+  background: #990000;
 }
 
 /* FORM */
