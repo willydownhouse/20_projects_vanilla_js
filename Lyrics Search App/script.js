@@ -50,11 +50,13 @@ const getLyricsByArtistAndTitle = async function (artist, title) {
 
     const data = await res.json();
 
-    console.log(data);
+    return data;
   } catch (err) {
     console.log(err);
   }
 };
+
+/* getLyricsByArtistAndTitle('eminem', 'lose yourself'); */
 
 /* functions */
 
@@ -67,13 +69,19 @@ const renderArtistsAndSongs = function (arr) {
         <li>
         <div class="group">
             <h3>${ob.artist}: <span>${ob.song}</span></h3>
-            <button class="btn">Lyrics</button>
+            <button name="${ob.artist}" value="${ob.song}" class="btn btn-lyrics">Lyrics</button>
         </div>
         </li>
     </ul>  
         `;
       })
       .join('') + '<button id="next" class="btn">Next</button>';
+
+  resultsEl.innerHTML = html;
+};
+
+const renderLyrics = function (artist, title, lyrics) {
+  const html = `<h2>${artist}: ${title}</h2> <p>${lyrics}</p> <button id="back" class="btn">Back</button>`;
 
   resultsEl.innerHTML = html;
 };
@@ -89,16 +97,40 @@ btnSearch.addEventListener('click', async function (e) {
       input.value = '';
       return;
     }
-
-    console.log(keyword);
     const arr = await getSongsByWord(keyword);
 
     console.log(arr);
-    /* btnNext.classList.remove('hidden'); */
+
     renderArtistsAndSongs(arr);
+
+    /* add even listeners lyrics buttons */
+    const btnLyricsAll = document.querySelectorAll('.btn-lyrics');
+
+    btnLyricsAll.forEach(btn => {
+      btn.addEventListener('click', async function (e) {
+        e.preventDefault();
+        const artist = e.target.name;
+        const title = e.target.value;
+
+        console.log(artist);
+        console.log(title);
+        const data = await getLyricsByArtistAndTitle(artist, title);
+
+        const { lyrics } = data;
+
+        renderLyrics(artist, title, lyrics);
+      });
+    });
 
     input.value = '';
   } catch (err) {
     console.log(err);
   }
 });
+
+// const btnBack = document.getElementById('back');
+
+// btnBack.addEventListener('click', function (e) {
+//   console.log('click');
+//   renderArtistsAndSongs(arr);
+// });
