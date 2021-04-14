@@ -5,48 +5,17 @@ const input = document.getElementById('input');
 const resultsEl = document.getElementById('results');
 const btnNext = document.getElementById('next');
 
-let nextSetURL;
+let currentListOfSongs;
+let nextUrl;
+
+//https://api.lyrics.ovh/suggest/${word}`
+//https://api.lyrics.ovh/v1/${artist}/${title}`
 
 /* ajax calls */
 
-const getSongsByWord = async function (word) {
+const getListOfSongs = async function (value) {
   try {
-    const res = await fetch(`https://api.lyrics.ovh/suggest/${word}`);
-
-    console.log(res);
-
-    const data = await res.json();
-
-    const { data: songs, next } = data;
-
-    nextSetURL = next;
-
-    if (songs.length === 0) {
-      throw new Error('No songs found!');
-    }
-
-    console.log(songs);
-    console.log(nextSetURL);
-
-    const arr = songs.map(ob => {
-      return {
-        id: ob.id,
-        artist: ob.artist.name,
-        song: ob.title,
-      };
-    });
-
-    return arr;
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const getLyricsByArtistAndTitle = async function (artist, title) {
-  try {
-    const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
-
-    console.log(res);
+    const res = await fetch(`https://api.lyrics.ovh/suggest/${value}`);
 
     const data = await res.json();
 
@@ -56,81 +25,96 @@ const getLyricsByArtistAndTitle = async function (artist, title) {
   }
 };
 
-/* getLyricsByArtistAndTitle('eminem', 'lose yourself'); */
+/* ajax get lyrics */
 
-/* functions */
+const getLyrics = async function (artist, title) {
+  try {
+    const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
 
-const renderArtistsAndSongs = function (arr) {
-  const html =
-    arr
-      .map(ob => {
-        return `
-    <ul>
-        <li>
-        <div class="group">
-            <h3>${ob.artist}: <span>${ob.song}</span></h3>
-            <button name="${ob.artist}" value="${ob.song}" class="btn btn-lyrics">Lyrics</button>
-        </div>
-        </li>
-    </ul>  
-        `;
-      })
-      .join('') + '<button id="next" class="btn">Next</button>';
+    const data = await res.json();
 
-  resultsEl.innerHTML = html;
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/* ajax next */
+
+const getNextSetOfSongs = async function (url) {
+  try {
+    const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}/`);
+
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/* render data */
+
+const renderSongs = function (arr, next) {
+  resultsEl.innerHTML = `<ul>
+  ${arr
+    .map(ob => {
+      return `
+    <li>
+      <div class="group">
+          <h3>${ob.artist.name}: <span>${ob.title}</span></h3>
+          <button data-artist="${ob.artist.name}" data-title="${ob.title}" class="btn btn-lyrics">Lyrics</button>
+      </div>
+    </li>`;
+    })
+    .join('')}
+  
+</ul>  
+${next ? `<button class="btn next">Next</button>` : ''}`;
 };
 
 const renderLyrics = function (artist, title, lyrics) {
-  const html = `<h2>${artist}: ${title}</h2> <p>${lyrics}</p> <button id="back" class="btn">Back</button>`;
-
-  resultsEl.innerHTML = html;
+  resultsEl.innerHTML = `
+  <h2>${artist}: ${title}</h2>
+  <p>${lyrics}</p>
+  <button class="btn back">Back</button>`;
 };
 
-/* event listeners */
+/* EVENTLISTENERS */
 
-btnSearch.addEventListener('click', async function (e) {
+btnSearch.addEventListener('click', async function () {
   try {
-    const keyword = input.value.trim();
+    const value = input.value;
 
-    if (!keyword || isFinite(keyword)) {
-      alert('Please insert a keyword.');
-      input.value = '';
-      return;
-    }
-    const arr = await getSongsByWord(keyword);
+    const data = await getListOfSongs(value);
 
-    console.log(arr);
+    const { data: arr, next } = data;
 
-    renderArtistsAndSongs(arr);
+    currentListOfSongs = arr;
+    nextUrl = next;
 
-    /* add even listeners lyrics buttons */
-    const btnLyricsAll = document.querySelectorAll('.btn-lyrics');
-
-    btnLyricsAll.forEach(btn => {
-      btn.addEventListener('click', async function (e) {
-        e.preventDefault();
-        const artist = e.target.name;
-        const title = e.target.value;
-
-        console.log(artist);
-        console.log(title);
-        const data = await getLyricsByArtistAndTitle(artist, title);
-
-        const { lyrics } = data;
-
-        renderLyrics(artist, title, lyrics);
-      });
-    });
-
-    input.value = '';
+    renderSongs(currentListOfSongs, next);
   } catch (err) {
     console.log(err);
   }
 });
 
-// const btnBack = document.getElementById('back');
+resultsEl.addEventListener('click', async function (e) {
+  if (e.target.classList.contains('back')) {
+    renderSongs(currentListOfSongs, nextUrl);
+  }
+  if (e.target.classList.contains('next')) {
+    getNextSetOfSongs(nextUrl);
+  }
+  if (!e.target.classList.contains('btn-lyrics')) return;
 
-// btnBack.addEventListener('click', function (e) {
-//   console.log('click');
-//   renderArtistsAndSongs(arr);
-// });
+  const artist = e.target.getAttribute('data-artist');
+  const title = e.target.getAttribute('data-title');
+
+  const data = await getLyrics(artist, title);
+
+  if (data.error === 'No lyrics found') {
+    alert('Didnt find any lyrics');
+    return;
+  } else {
+    renderLyrics(artist, title, data.lyrics);
+  }
+});

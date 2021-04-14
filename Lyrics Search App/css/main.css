@@ -6,8 +6,11 @@
 }
 
 body {
+  position: relative;
   font-family: 'Roboto', sans-serif;
   color: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#000305), to(#000d1a));
+  background: linear-gradient(#000305, #000d1a);
 }
 
 h1 {
@@ -44,7 +47,7 @@ ul {
   background: url("https://images.pexels.com/photos/164743/pexels-photo-164743.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500") no-repeat center center/cover;
 }
 
-.header::before {
+.header::after {
   content: '';
   position: absolute;
   top: 0;
@@ -52,7 +55,7 @@ ul {
   width: 100%;
   height: 100%;
   background: #000305;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .header .container {
@@ -151,6 +154,51 @@ span {
 
 .btn:hover {
   background: yellow;
+}
+
+/* ERROR MESSAGE AND OVERLAY */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  opacity: 0.9;
+  z-index: 4;
+  opacity: 0;
+  -webkit-transition: opacity 5s ease;
+  transition: opacity 5s ease;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 350px;
+  height: 250px;
+  background: #fff;
+  z-index: 5;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #000305;
+  opacity: 0;
+  -webkit-transition: opacity 5s ease;
+  transition: opacity 5s ease;
+}
+
+.show {
+  opacity: 1;
 }
 
 .hidden {

@@ -2,7 +2,9 @@ import View from './View.js';
 
 class artistListView extends View {
   _btnElement = document.getElementById('search');
-  _allLyricBtns = document.querySelectorAll('btn-lyrics');
+  _allLyricBtns;
+  _btnNext;
+  _lyricBtn;
 
   render = function (arr) {
     const html =
@@ -22,18 +24,25 @@ class artistListView extends View {
         .join('') + '<button id="next" class="btn">Next</button>';
 
     this._parentElement.innerHTML = html;
+    this._allLyricBtns = document.querySelectorAll('.btn-lyrics');
+    this._btnNext = document.getElementById('next');
   };
 
   activateLyricsButtons(handler) {
     this._allLyricBtns.forEach(btn => {
       btn.addEventListener('click', function (e) {
+        this._lyricBtn = e.target;
         const artist = e.target.name;
         const title = e.target.value;
 
-        console.log(artist);
-        console.log(title);
-        handler();
+        handler(artist, title);
       });
+    });
+  }
+
+  activateButtonNext(handler) {
+    this._btnNext.addEventListener('click', function () {
+      handler();
     });
   }
 }

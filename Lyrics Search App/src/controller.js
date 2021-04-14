@@ -1,39 +1,58 @@
 import * as model from './model.js';
 import artistListView from './artistListView.js';
-
-const btnNextEl = document.getElementById('next');
-const inputEl = document.getElementById('input');
+import lyricsView from './lyricsView.js';
 
 const controlSearch = async function () {
   try {
-    await model.getSongsByWord(inputEl.value);
+    await model.getSongsByWord();
 
-    console.log(model.state.artistAndSongs);
-    console.log(model.state.nextSetURL);
     artistListView.render(model.state.artistAndSongs);
+
+    artistListView.activateLyricsButtons(controlLyricsSearch);
+
+    artistListView.activateButtonNext(controlNextButton);
   } catch (err) {
-    console.log(err);
+    model.renderErrorMessage(err);
+    model.handlerErrorBtn();
   }
 };
 
 const controlLyricsSearch = async function (artist, title) {
   try {
-    await getLyricsByArtistAndTitle(artist, title);
+    await model.getLyricsByArtistAndTitle(artist, title);
 
-    console.log(state.lyrics);
+    const { lyrics } = model.state.lyrics;
+
+    lyricsView.render(artist, title, lyrics);
+
+    lyricsView.addHandler(controlLyricsBackButton);
   } catch (err) {
-    console.log(err);
+    model.renderErrorMessage(err);
+    model.handlerErrorBtn();
+  }
+};
+
+const controlLyricsBackButton = function () {
+  artistListView.render(model.state.artistAndSongs);
+  artistListView.activateLyricsButtons(controlLyricsSearch);
+  artistListView.activateButtonNext(controlNextButton);
+};
+
+const controlNextButton = async function () {
+  try {
+    await model.getNextSetOfSongs();
+
+    artistListView.render(model.state.artistAndSongs);
+
+    artistListView.activateLyricsButtons(controlLyricsSearch);
+
+    artistListView.activateButtonNext(controlNextButton);
+  } catch (err) {
+    model.renderErrorMessage(err);
+    model.handlerErrorBtn();
   }
 };
 
 /* EVENT LISTENERS */
 
 artistListView.addHandler(controlSearch);
-artistListView.activateLyricsButtons(controlLyricsSearch);
-
-/* btnSearch.addEventListener('click', function (e) {
-  const input = inputEl.value;
-  controlSearch(input);
-}); */
-
-/* lyrics button */
