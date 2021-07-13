@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <title>RelaxerApp</title>
+  </head>
+  <body>
+    <div class="app">
+      <div class="header">
+        <h1>Relaxer</h1>
+      </div>
+      <div class="breather">
+        <div class="bg-ball"></div>
+        <div class="ball">
+          <div>
+            <p class="text">Breathe</p>
+          </div>
+          <div class="pointer-container">
+            <span class="pointer"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const ballBg = document.querySelector('.bg-ball');
+      const ball = document.querySelector('.ball');
+      const text = document.querySelector('.text');
+
+      const totalTime = 8500;
+      const breatheTime = 3500;
+      const holdTime = 1500;
+
+      const breatheAnimation = () => {
+        ball.classList.remove('shrink');
+        ballBg.classList.remove('shrink');
+
+        ball.classList.add('grow');
+        ballBg.classList.add('grow');
+        text.innerText = 'Breathe in';
+
+        setTimeout(() => {
+          text.innerText = 'Hold';
+
+          setTimeout(() => {
+            text.innerText = 'Breathe out';
+            ball.classList.remove('grow');
+            ballBg.classList.remove('grow');
+            ball.classList.add('shrink');
+            ballBg.classList.add('shrink');
+          }, holdTime);
+        }, breatheTime);
+      };
+      breatheAnimation();
+
+      setInterval(() => breatheAnimation(), totalTime);
+    </script>
+  </body>
+</html>

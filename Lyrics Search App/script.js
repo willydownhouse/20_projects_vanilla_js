@@ -46,6 +46,8 @@ const getNextSetOfSongs = async function (url) {
     const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}/`);
 
     console.log(res);
+
+    const data = await res.json();
   } catch (err) {
     console.log(err);
   }
@@ -72,9 +74,11 @@ ${next ? `<button class="btn next">Next</button>` : ''}`;
 };
 
 const renderLyrics = function (artist, title, lyrics) {
+  const modLyrics = lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+
   resultsEl.innerHTML = `
   <h2>${artist}: ${title}</h2>
-  <p>${lyrics}</p>
+  <p>${modLyrics}</p>
   <button class="btn back">Back</button>`;
 };
 
@@ -84,6 +88,8 @@ btnSearch.addEventListener('click', async function () {
   try {
     const value = input.value;
 
+    if (!value) return;
+
     const data = await getListOfSongs(value);
 
     const { data: arr, next } = data;
@@ -92,6 +98,8 @@ btnSearch.addEventListener('click', async function () {
     nextUrl = next;
 
     renderSongs(currentListOfSongs, next);
+
+    input.value = '';
   } catch (err) {
     console.log(err);
   }
