@@ -9,6 +9,10 @@ h1 {
   margin-bottom: 30px;
 }
 
+p {
+  color: #f9f9f9;
+}
+
 .container {
   height: 100vh;
   background: linear-gradient(rgb(12, 34, 23), rgb(45, 31, 65));
@@ -16,48 +20,44 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.gameWindow {
-  width: 60%;
-  height: 65%;
-  background: #f9f9f9;
-  padding: 15px;
+.rules {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 5;
+  padding: 30px;
+  transition: all 0.5s ease;
+  transform: translateX(-100%);
+  opacity: 0;
 }
 
-.cont {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.show-rules {
+  transform: translateX(0);
+  opacity: 1;
 }
 
-.scoreWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.btn-rules {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  padding: 12px 25px;
+  cursor: pointer;
+  background: rgb(114, 59, 114);
+  color: #f9f9f9;
+  border: 1px solid black;
+  border-radius: 3px;
+  outline: none;
+  letter-spacing: 2px;
 }
 
-.bricksWrapper {
-  height: 30%;
-  padding: 10px;
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  grid-gap: 10px;
-}
-
-.brick {
-  background: linear-gradient(rgb(12, 34, 23), rgb(45, 31, 65));
-  height: 12px;
-}
-
-.padleWrapper {
-  margin-top: auto;
-}
-
-.padle {
-  width: 40px;
-  height: 12px;
-  background: linear-gradient(rgb(12, 34, 23), rgb(45, 31, 65));
+#canvas {
+  width: 600px;
+  height: 400px;
+  background-color: #f9f9f9;
 }
